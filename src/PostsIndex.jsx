@@ -8,7 +8,7 @@ export function PostsIndex(props) {
           <h2>{post.title}</h2>
           <p>{post.body}</p>
           <img src={post.image} alt="" />
-          <button onClick={props.onShowPost}>More info</button>
+          <button onClick={() => props.onShowPost(post)}>More info</button>
         </div>
       ))}
     </div>
