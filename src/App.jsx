@@ -1,43 +1,49 @@
+import { useState } from "react";
+
 function Header() {
   return (
     <header>
-      <a href="#">Home</a> | <a href="#recipes-index">All posts</a> | <a href="#recipes-new">New post</a>
+      <a href="#">Home</a> | <a href="#posts-index">All posts</a> | <a href="#posts-new">New post</a>
     </header>
   )
 }
 
+
 function PostsNew() {
   return (
     <div id="posts-new">
-      <h1>New recipe</h1>
+      <h1>New post</h1>
       <form>          
         <div>
-          <p>Title: <input type="text" /></p>
+          Title: <input type="text" />
         </div>
         <div>
-          <p>Body: <input type="text" /></p>
+          Body: <input type="text" />
         </div>
         <div>
-          <p>Image: <input type="text" /></p>
+          Image: <input type="text" />
         </div>
-        <button type="submit">Create New Blog</button>
+        <button type="submit">Create Blog Post</button>
       </form>
     </div>
   )
 }
 
-function PostsIndex() {
+function PostsIndex(props) {
+  console.log(props.posts);
   return (
     <div id="posts-index">
       <h1>All blogs</h1>
-      <div className="posts">
-        <h2>Captain's Log</h2>
-        <img src="https://i.imgur.com/Ue42Eeq.png" alt="" />
-        <p>Author: Kimber Ogden</p>
-        <button>More info</button>
-      </div>
+      {props.posts.map(post => (
+        <div key={post.id} className="posts">
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+          <img src={post.image} alt="" />
+          <button>More info</button>
+        </div>
+      ))}
     </div>
-  )
+  );
 }
 
 function Footer() {
@@ -49,10 +55,19 @@ function Footer() {
 }
 
 function Content() {
+  const [posts, setPosts] = useState([
+    {
+      id: 1,
+      title: "Captain's (b)Log",
+      body: "This is my first (b)Log!",
+      image: "https://i.imgur.com/Ue42Eeq.png"
+    }
+  ])
+
   return (
     <div>
       <PostsNew />
-      <PostsIndex />
+      <PostsIndex posts={posts}/>
     </div>
 
   )
@@ -60,11 +75,12 @@ function Content() {
 
 function App() {
   return (
-    <div>      
+    <div>
       <Header />
       <Content />   
       <Footer />   
     </div>
   );
 }
+
 export default App;
