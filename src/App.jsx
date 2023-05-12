@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 function Header() {
   return (
@@ -55,18 +56,26 @@ function Footer() {
 }
 
 function Content() {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "Captain's (b)Log",
-      body: "This is my first (b)Log!",
-      image: "https://i.imgur.com/Ue42Eeq.png"
-    }
-  ])
+  const [posts, setPosts] = useState([])
+
+  const handleIndexPosts = () => {
+    console.log('in handle index posts')
+    // make my web request to api
+    axios.get('http://localhost:3000/posts.json').then(response => {
+      console.log(response.data);
+      // posts = response.data
+      setPosts(response.data);
+
+    })
+  }
 
   return (
     <div>
       <PostsNew />
+      <br />
+      <br />
+      <br />
+      <button onClick={handleIndexPosts}>Get data</button>
       <PostsIndex posts={posts}/>
     </div>
 
