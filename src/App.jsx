@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <header>
+        <a href="#">Home</a> | <a href="#posts-index">All posts</a> | <a href="#posts-new">New post</a>
+      </header>
+
+      <div id="posts-new">
+        <h1>New post</h1>
+        <form>
+          <div>
+            <p>Title: <input type="text" /></p>
+            <p>Body: <input type="text" /></p>
+            <p>Image: <input type="text"/></p>
+          </div>
+          <button type="submit">Create post</button>
+        </form>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div id="posts-index">
+        <h1>All posts</h1>
+        <div className="posts">
+          <h2>Captains Blog</h2>
+          <img src="https://i.imgur.com/Ue42Eeq.png" alt="" />
+          <p>Author: Kimber Ogden</p>
+          <button>More info</button>
+        </div>
+        
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <footer>
+        <p>Copyright 2022</p>
+      </footer>
+    </div>
+  );
 }
 
-export default App
+export default App;
