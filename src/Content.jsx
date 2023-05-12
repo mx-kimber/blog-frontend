@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { PostsNew } from './PostsNew';
 import { PostsIndex } from './PostsIndex';
+import { PostsShow } from "./PostsShow";
 import { Modal } from "./Modal";
 
 export function Content() {
@@ -19,6 +20,7 @@ export function Content() {
 
     });
   };
+
   useEffect(handleIndexPosts, []);
   
   const handleShowPost = (myPost) => {
@@ -38,9 +40,7 @@ export function Content() {
       <button onClick={handleIndexPosts}>Get data</button>
       <PostsIndex posts={posts} onShowPost={handleShowPost}/>
       <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <p>Title: {currentPost.title}</p>
-        <p>Body: {currentPost.body}</p>
-        <p>Image: {currentPost.image}</p>
+        <PostsShow post={currentPost}/>
       </Modal>
     </div>
 
