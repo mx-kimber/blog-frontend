@@ -32,17 +32,18 @@ export function Content() {
     setIsPostsShowVisible(false);
   };
   return (
-    <div>
-      <PostsNew />
-      <br />
-      <br />
-      <br />
-      <button onClick={handleIndexPosts}>Get data</button>
-      <PostsIndex posts={posts} onShowPost={handleShowPost}/>
-      <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <PostsShow post={currentPost}/>
-      </Modal>
+    <div className="container">
+      <div>
+        <PostsNew />
+        <br />
+        <br />
+        <br />
+        <button onClick={handleIndexPosts}>Get data</button>
+        <PostsIndex posts={posts} onShowPost={handleShowPost}/>
+        <Modal show={isPostsShowVisible} onClose={handleClose}>
+          <PostsShow post={currentPost}/>
+        </Modal>
+      </div>
     </div>
-
   );
 }
