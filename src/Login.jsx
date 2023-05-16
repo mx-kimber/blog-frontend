@@ -1,12 +1,46 @@
+import axios from "axios";
+import { useState } from "react";
+
+const jwt = localStorage.getItem("jwt");
+if (jwt) {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`;
+}
+
 export function Login() {
-return (
-    <div id="Login">
-        <h1>Login</h1>
-        <form action="http://localhost:3000/sessions.json" method="POST">
-        <p><b>Email:</b><br/> <input name ="email" type="text" /></p>
-        <p><b>Password:</b><br/><input name="password" type="password" /></p>
+  const [errors, setErrors] = useState([]);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    setErrors([]);
+    const params = new FormData(event.target);
+    axios
+      .post("http://localhost:3000/sessions.json", params)
+      .then((response) => {
+        console.log(response.data);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
+        localStorage.setItem("jwt", response.data.jwt);
+        event.target.reset();
+        window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
+      })
+      .catch((error) => {
+        console.log(error.response);
+        setErrors(["Invalid email or password"]);
+      });
+  };
+
+  return (
+    <div id="login">
+      <h1>Login</h1>
+      <ul>
+        {errors.map((error) => (
+          <li key={error}>{error}</li>
+        ))}
+      </ul>
+      <form onSubmit={handleSubmit}>
+        <p><b>Email:</b><br/> <input name="email" type="email" /></p>
+        <p><b>Password:</b><br/> <input name="password" type="password" /></p>
         <button type="submit">Login</button>
-        </form>
+      </form>
     </div>
-    );
+  );
 }
