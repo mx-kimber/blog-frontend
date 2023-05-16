@@ -54,7 +54,7 @@ export function Content() {
         <br />
         <br />
         <br />
-        <button onClick={handleIndexPosts}>Get data</button>
+       
         <PostsIndex posts={posts} onShowPost={handleShowPost}/>
         <Modal show={isPostsShowVisible} onClose={handleClose}>
           <PostsShow post={currentPost}/>
