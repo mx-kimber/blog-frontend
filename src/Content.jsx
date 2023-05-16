@@ -18,7 +18,7 @@ export function Content() {
  
     axios.get('http://localhost:3000/posts.json').then(response => {
       console.log(response.data);
-      // posts = response.data
+     
       setPosts(response.data);
 
     });
@@ -34,13 +34,23 @@ export function Content() {
   const handleClose = () => {
     setIsPostsShowVisible(false);
   };
+
+  const handleCreatePost = (params) => {
+    axios.post('http://localhost:3000/posts.json', params).then(response => {
+      console.log(response.data);
+      // take everything that's in recipes and add response.data
+      setPosts([...posts, response.data])
+    })
+    console.log('handling create recipe')
+  }
+
   return (
     <div className="container">
       <div>
         <Signup />  
         <Login />
         <button><LogoutLink /></button>
-        <PostsNew />
+        <PostsNew onCreatePost={handleCreatePost} />
         <br />
         <br />
         <br />
