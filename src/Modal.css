@@ -10,24 +10,24 @@
   z-index: 1000;
 }
 
-  
-  .modal-main {
-    position:fixed;
-    background: white;
-    color: black;
-    width: 80%;
-    height: auto;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    padding: 1em;
-  }
-  
-  .modal-main button.close {
-    font-size: 2em;
-    background: none;
-    border: none;
-    position: absolute;
-    top: 0em; 
-    right: 0.2em;
-  }
+.modal-main {
+  position: fixed;
+  background: white;
+  color: black;
+  width: 80%;
+  height: 80%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1em;
+  overflow: auto; /* Enable scrolling for the modal content */
+}
+
+.modal-main button.close {
+  font-size: 2em;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0.2em;
+}
