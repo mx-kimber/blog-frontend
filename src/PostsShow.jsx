@@ -1,20 +1,12 @@
 import axios from "axios"
-
 export function PostsShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    axios.patch(`http://localhost:3000/posts/${props.post.id}.json`, params).then(response => {
-      console.log(response.data);
-    })
+    props.onUpdatePost(props.post.id, params);
 
     console.log('handling submit');
   }
-  const handleClick = () => {
-    console.log('handling click')
-    props.onDestroyPost(props.post.id)
-  }
-
   console.log(props.post)
     return (
       <div>
@@ -25,11 +17,9 @@ export function PostsShow(props) {
         
         <form onSubmit={handleSubmit}>
           <p>Title:<br/><input name="title" type="text" defaultValue={props.post.title} /></p>
-
           <p>Body:<br/><input name="body" type="text" defaultValue={props.post.body}/></p>
           
           <p>Image:<br/><input name="image" type="text" defaultValue={props.post.image} /></p>
-
           <button type="input">Update Info</button>
         </form>
       </div>

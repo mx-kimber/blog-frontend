@@ -74,15 +74,16 @@ export function Content() {
       <Signup />  
       
       <Login />
+      
       <button><LogoutLink /></button>
       
       <PostsIndex posts={posts} onShowPost={handleShowPost}/>
+      
       <PostsNew onCreatePost={handleCreatePost} />
      
-      <PostsIndex posts={posts} onShowPost={handleShowPost}/>
-      <Modal show={isPostsShowVisible} onClose={handleClose}>
-      
-      <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} onDestroyPost={handleDestroyPost} />
+
+      <Modal show={isPostsShowVisible} onClose={handleClose}>      
+        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} onDestroyPost={handleDestroyPost} />
       </Modal>
     </div>
 
