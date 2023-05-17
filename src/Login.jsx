@@ -39,7 +39,7 @@ export function Login() {
       <form onSubmit={handleSubmit}>
         <p><b>Email:</b><br/> <input name="email" type="email" /></p>
         <p><b>Password:</b><br/> <input name="password" type="password" /></p>
-        <button type="submit">Login</button>
+        <button type="submit">Login</button><br />
       </form>
     </div>
   );

@@ -3,8 +3,8 @@ export function PostsIndex(props) {
   return (
     <div id="posts-index">
       <p>
-        <h1>Captain's (b)Logs</h1>
-        <h3>Ship Data</h3>
+        <br />
+        <h3>Starship Data and Schematics - SDS</h3>
       </p>
       <div>
         <input type="button" value="Federation" />

@@ -6,6 +6,10 @@ export function PostsShow(props) {
         <p>{props.post.body}</p>
         {/* <p>{props.post.image}</p> */}
         
+        <form>
+          <input type="text" /><br />
+          <p><button type="input">Update Info</button></p>
+        </form>
       </div>
     )
   }
