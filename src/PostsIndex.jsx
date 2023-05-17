@@ -1,5 +1,5 @@
 export function PostsIndex(props) {
-  console.log(props.posts);
+  
   return (
     <div id="posts-index">
       <p>

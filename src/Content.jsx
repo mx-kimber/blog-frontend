@@ -14,10 +14,10 @@ export function Content() {
   const [currentPost, setCurrentPost] = useState({});
   
   const handleIndexPosts = () => {
-    console.log('in handle index posts');
+    // console.log('in handle index posts');
  
     axios.get('http://localhost:3000/posts.json').then(response => {
-      console.log(response.data);
+      // console.log(response.data);
      
       setPosts(response.data);
 
@@ -61,22 +61,30 @@ export function Content() {
 
     })
   }
-  
+  const handleDestroyPost = (postId) => {
+    console.log('hanlding destroy post')
+    axios.delete(`http://localhost:3000/posts/${postId}.json`).then(response => {
+      console.log(response.data);
+      // posts.select {|post| post.id != post_id}
+      setposts(posts.filter(post => post.id != postId))
+    })
+  }
   return (
     <div className="container">
-      <div>
-        <PostsIndex posts={posts} onShowPost={handleShowPost}/>
-        <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} />
-        </Modal>
-        <br />
-        <Signup />  
-        <br />
-        <Login />
-        <button><LogoutLink /></button>
-        <PostsNew onCreatePost={handleCreatePost} />
-        <br />       
-      </div>
+      <Signup />  
+      
+      <Login />
+      <button><LogoutLink /></button>
+      
+      <PostsIndex posts={posts} onShowPost={handleShowPost}/>
+      <PostsNew onCreatePost={handleCreatePost} />
+     
+      <PostsIndex posts={posts} onShowPost={handleShowPost}/>
+      <Modal show={isPostsShowVisible} onClose={handleClose}>
+      
+      <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} onDestroyPost={handleDestroyPost} />
+      </Modal>
     </div>
+
   );
 }

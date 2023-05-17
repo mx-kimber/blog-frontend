@@ -4,10 +4,17 @@ export function PostsShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
     const params = new FormData(event.target);
-    props.onUpdatePost(props.post.id, params);
+    axios.patch(`http://localhost:3000/posts/${props.post.id}.json`, params).then(response => {
+      console.log(response.data);
+    })
 
     console.log('handling submit');
   }
+  const handleClick = () => {
+    console.log('handling click')
+    props.onDestroyPost(props.post.id)
+  }
+
   console.log(props.post)
     return (
       <div>
