@@ -38,18 +38,36 @@ export function Content() {
   const handleCreatePost = (params) => {
     axios.post('http://localhost:3000/posts.json', params).then(response => {
       console.log(response.data);
-      // take everything that's in recipes and add response.data
+   
       setPosts([...posts, response.data])
     })
-    console.log('handling create recipe')
+    console.log('handling create post')
   }
 
+  const handleUpdatePost = (postId, params) => {
+    console.log('handling update post...');
+    axios.patch(`http://localhost:3000/posts/${postId}.json`, params).then(response => {
+      console.log(response.data);
+      setPosts(
+        posts.map(post => {
+          if (post.id === response.data.id) {
+            return response.data;
+          } else {
+            return post;
+          }
+        })
+      )
+      setIsPostsShowVisible(false);
+
+    })
+  }
+  
   return (
     <div className="container">
       <div>
         <PostsIndex posts={posts} onShowPost={handleShowPost}/>
         <Modal show={isPostsShowVisible} onClose={handleClose}>
-          <PostsShow post={currentPost}/>
+        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} />
         </Modal>
         <br />
         <Signup />  
