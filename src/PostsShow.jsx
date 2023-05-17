@@ -11,10 +11,12 @@ export function PostsShow(props) {
     return (
       <div>
         <p>{props.post.id}</p>
-        <p>{props.post.title}</p>
+        <p><b>{props.post.title}</b></p>
+        <img src={props.post.image} style={{ width: '200px', height: '100px' }} alt={props.post.title} />
+        <br />
+        <br />
         <p>{props.post.body}</p>
-        <img src={props.post.image} style={{ width: '300px', height: '200px' }} alt={props.post.title} />
-        
+        <br />
         <form onSubmit={handleSubmit}>
           <p>Title:<br/><input name="title" type="text" defaultValue={props.post.title} /></p>
           <p>Body:<br/><input name="body" type="text" defaultValue={props.post.body}/></p>
