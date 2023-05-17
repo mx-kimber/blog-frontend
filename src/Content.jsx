@@ -54,7 +54,7 @@ export function Content() {
         <br />
         <br />
         <br />
-       
+            
         <PostsIndex posts={posts} onShowPost={handleShowPost}/>
         <Modal show={isPostsShowVisible} onClose={handleClose}>
           <PostsShow post={currentPost}/>
