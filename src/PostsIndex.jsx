@@ -4,7 +4,7 @@ export function PostsIndex(props) {
     <div id="posts-index">
       <p>
         <h1>Captain's (b)Logs</h1>
-        <h3> Ship Data </h3>
+        <h3>Ship Data</h3>
       </p>
       <div>
         <input type="button" value="Federation" />
@@ -13,24 +13,22 @@ export function PostsIndex(props) {
         <input type="button" value="Alternate Timeline" />
       </div>
       <br />
-      <div className="row">
+      <div className="card-container">
         {props.posts.map(post => (
-          <div key={post.id} className="col-sm-6 mb-3 mb-sm-0">
-            <div className="card card-with-image">
-              <div className="card-body">
-                <h5 className="card-title">{post.title}</h5>
-                <p className="card-text">{post.ingredients}</p>
-                <img src={post.image} alt={post.title} />
-                <p><br />
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => {
-                      props.onShowPost(post);
-                    }} >
-                    More info
-                  </button>
-                </p>
-              </div>
+          <div key={post.id} className="card">
+            <div className="card-body">
+              <h5 className="card-title">{post.title}</h5>
+              <img src={post.image} alt={post.title} />
+              <p><br />
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    props.onShowPost(post);
+                  }}
+                >
+                  More info
+                </button>
+              </p>
             </div>
           </div>
         ))}

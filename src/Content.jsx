@@ -47,18 +47,17 @@ export function Content() {
   return (
     <div className="container">
       <div>
-        <Signup />  
-        <Login />
-        <button><LogoutLink /></button>
-        <PostsNew onCreatePost={handleCreatePost} />
-        <br />
-        <br />
-        <br />
-            
         <PostsIndex posts={posts} onShowPost={handleShowPost}/>
         <Modal show={isPostsShowVisible} onClose={handleClose}>
           <PostsShow post={currentPost}/>
         </Modal>
+        <br />
+        <Signup />  
+        <br />
+        <Login />
+        <button><LogoutLink /></button>
+        <PostsNew onCreatePost={handleCreatePost} />
+        <br />       
       </div>
     </div>
   );
