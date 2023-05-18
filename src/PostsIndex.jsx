@@ -1,17 +1,10 @@
 export function PostsIndex(props) {
-  
   return (
     <div id="posts-index">
       <p>
         <br />
         <h3>Starship Data and Schematics - SDS</h3>
       </p>
-      <div>
-        <input type="button" value="Federation" />
-        <input type="button" value="Klingon" />
-        <input type="button" value="Borg" />
-        <input type="button" value="Alternate Timeline" />
-      </div>
       <br />
       <div className="card-container">
         {props.posts.map(post => (
@@ -21,7 +14,7 @@ export function PostsIndex(props) {
               <img src={post.image} alt={post.title} />
               <p><br />
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary custom-info-button"
                   onClick={() => {
                     props.onShowPost(post);
                   }}
@@ -36,3 +29,4 @@ export function PostsIndex(props) {
     </div>
   );
 }
+
