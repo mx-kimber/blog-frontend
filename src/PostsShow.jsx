@@ -1,4 +1,5 @@
 import axios from "axios"
+
 export function PostsShow(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -6,6 +7,10 @@ export function PostsShow(props) {
     props.onUpdatePost(props.post.id, params);
 
     console.log('handling submit');
+  }
+  const handleClick = () => {
+    console.log('handling click')
+    props.onDestroyPost(props.post.id)  
   }
   console.log(props.post)
     return (
@@ -18,12 +23,17 @@ export function PostsShow(props) {
         <p>{props.post.body}</p>
         <br />
         <form onSubmit={handleSubmit}>
+          
           <p>Title:<br/><input name="title" type="text" defaultValue={props.post.title} /></p>
+          
           <p>Body:<br/><input name="body" type="text" defaultValue={props.post.body}/></p>
           
           <p>Image:<br/><input name="image" type="text" defaultValue={props.post.image} /></p>
           <button type="input">Update Info</button>
+        
         </form>
+        <hr />
+          <button onClick={handleClick}>Delete Log</button>
       </div>
     )
   }

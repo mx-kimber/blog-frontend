@@ -7,6 +7,7 @@ import { Modal } from "./Modal";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { LogoutLink } from "./LogoutLink";
+
 export function Content() {
   const [posts, setPosts] = useState([]);
   const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
@@ -14,26 +15,24 @@ export function Content() {
   
   const handleIndexPosts = () => {
     console.log('in handle index posts');
- 
     axios.get('http://localhost:3000/posts.json').then(response => {
-      console.log(response.data);
-     
       setPosts(response.data);
     });
   };
+
   useEffect(handleIndexPosts, []);
   
   const handleShowPost = (myPost) => {
     setIsPostsShowVisible(true); 
     setCurrentPost(myPost)
-}
+  }
   const handleClose = () => {
     setIsPostsShowVisible(false);
   };
+
   const handleCreatePost = (params) => {
     axios.post('http://localhost:3000/posts.json', params).then(response => {
       console.log(response.data);
-
       setPosts([...posts, response.data])
     })
     console.log('handling create post')
@@ -56,15 +55,24 @@ export function Content() {
 
     })
   }
+  const handleDestroyPost = (postId) => {
+    console.log('handling destroy post')
+    axios.delete(`http://localhost:3000/posts/${postId}.json`).then(response => {
+      console.log(response.data);
+      setPosts(posts.filter(post => post.id != postId))
+    })
+  }
 
   return (
     <div className="container">
       <div>
         <PostsIndex posts={posts} onShowPost={handleShowPost}/>
         <Modal show={isPostsShowVisible} onClose={handleClose}>
-          <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} />
+        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} onDestroyPost={handleDestroyPost} />
           </Modal>
         <br />
+        <PostsNew onCreatePost={handleCreatePost} />
+        <br/>
         <Signup />  
         <br />
         <Login />
