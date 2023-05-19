@@ -4,8 +4,7 @@ export function PostsNew(props) {
     console.log('handling Submit');
     const params = new FormData(event.target);
     props.onCreatePost(params)
-
-    event.target.reset()
+    window.location.href = "/";
 }
 
   return (

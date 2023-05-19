@@ -1,10 +1,10 @@
 export function PostsIndex(props) {
   return (
     <div id="posts-index">
-      <p>
+    
         <br />
-        <h3>Starship Data and Schematics - SDS</h3>
-      </p>
+        <h3>Vessel Log and Schematics - SDS</h3>
+      
       <br />
       <div className="card-container">
         {props.posts.map(post => (

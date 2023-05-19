@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
+import { LogoutLink } from "./LogoutLink";
 
 export function Header() {
   return (
     <nav className="navbar navbar-expand-lg" >
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
         <div className="container-fluid">
-        <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+        
           <a className="navbar-brand text-black" href="/">Captain's bLog</a>
           <form className="d-flex" role="search">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-              <button className="btn btn-outline-success text-black" type="submit">Search</button>
+              <button className="btn btn-outline-success text-black" type="submit">&#x1F50D;</button>
+              <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
             </form>
           
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,6 +21,7 @@ export function Header() {
               <li className="nav-item">
                 <a className="nav-link active text-black" aria-current="page" href="/about">About</a>
                 <a className="nav-link active text-black" aria-current="page" href="/">Home</a>
+                <Link className="nav-link active text-black" to="/posts/new">Create new post</Link>
               </li>
               
               <li className="nav-item dropdown">
@@ -26,10 +29,10 @@ export function Header() {
                 Account
                 </a>
                 <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Login</a></li>
-                  <li><a className="dropdown-item" href="#">Signup</a></li>            
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">Logout</a></li>
+                <li><a className="dropdown-item" href="/signup">Signup</a></li>
+                <li><a className="dropdown-item" href="/login">Login</a></li>            
+                <li><hr className="dropdown-divider" /></li>
+                <li><LogoutLink className="dropdown-item" /></li>
                 </ul>
               </li>
             </ul>
